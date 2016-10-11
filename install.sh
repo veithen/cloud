@@ -55,7 +55,9 @@ chmod a+x .profile.d/vnc
 
 [ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
 
-eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash -repository https://dl.bintray.com/subclipse/releases/subclipse/4.2.x/,http://download.eclipse.org/tools/ajdt/46/dev/update -installIU org.tigris.subversion.subclipse.feature.group,org.eclipse.ajdt.feature.group
+eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
+  -repository https://dl.bintray.com/subclipse/releases/subclipse/4.2.x/,http://download.eclipse.org/tools/ajdt/46/dev/update,https://alfsch.github.io/eclipse-updates/workspacemechanic \
+  -installIU org.tigris.subversion.subclipse.feature.group,org.eclipse.ajdt.feature.group,com.google.eclipse.mechanic.feature.feature.group
 
 [ -d apache-maven-3.3.9 ] || wget -qO- http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
 [ -d bin ] || mkdir bin
