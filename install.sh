@@ -38,6 +38,21 @@ cat > .vnc/tightvncserver.conf <<EOF
 \$geometry = "2048x1024";
 EOF
 
+grep -q run-parts .profile || echo 'run-parts $HOME/.profile.d' >> .profile
+[ -d .profile.d ] || mkdir .profile.d
+
+cat > .profile.d/vnc <<EOF
+#!/bin/sh
+if [ ! -e ~/.vnc/\$(hostname):1.pid ]; then
+  password=\$(openssl rand -base64 6)
+  echo \$password | vncpasswd -f > ~/.vnc/passwd
+  echo "VNC password: \$password"
+  vncserver
+fi
+EOF
+
+chmod a+x .profile.d/vnc
+
 [ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
 
 eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash -repository https://dl.bintray.com/subclipse/releases/subclipse/4.2.x/,http://download.eclipse.org/tools/ajdt/46/dev/update -installIU org.tigris.subversion.subclipse.feature.group,org.eclipse.ajdt.feature.group
