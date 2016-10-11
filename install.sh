@@ -38,11 +38,10 @@ cat > .vnc/tightvncserver.conf <<EOF
 \$geometry = "2048x1024";
 EOF
 
-grep -q run-parts .profile || echo 'run-parts $HOME/.profile.d' >> .profile
+grep -q run-parts .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"; done' >> .profile
 [ -d .profile.d ] || mkdir .profile.d
 
 cat > .profile.d/vnc <<EOF
-#!/bin/sh
 if [ ! -e ~/.vnc/\$(hostname):1.pid ]; then
   password=\$(openssl rand -base64 6)
   echo \$password | vncpasswd -f > ~/.vnc/passwd
@@ -50,8 +49,6 @@ if [ ! -e ~/.vnc/\$(hostname):1.pid ]; then
   vncserver
 fi
 EOF
-
-chmod a+x .profile.d/vnc
 
 [ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
 
@@ -63,4 +60,5 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
 [ -d bin ] || mkdir bin
 ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
 
+[ -e .profile.d/mvn ] || echo 'export MAVEN_OPTS="-Xmx256m -Xms128m"' > .profile.d/mvn
 
