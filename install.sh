@@ -42,11 +42,12 @@ grep -q run-parts .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"
 [ -d .profile.d ] || mkdir .profile.d
 
 cat > .profile.d/vnc <<EOF
-if [ ! -e ~/.vnc/\$(hostname):1.pid ]; then
+pidfile=~/.vnc/\$(hostname):1.pid
+if [ ! -e \$pidfile ] || [ "\$(readlink /proc/\$(cat \$pidfile)/exe)" != /usr/bin/Xtightvnc ]; then
   password=\$(openssl rand -base64 6)
   echo \$password | vncpasswd -f > ~/.vnc/passwd
   echo "VNC password: \$password"
-  vncserver
+  /usr/bin/tightvncserver
 fi
 EOF
 
