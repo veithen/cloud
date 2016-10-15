@@ -45,7 +45,7 @@ cat > .profile.d/vnc <<EOF
 pidfile=~/.vnc/\$(hostname):1.pid
 if [ ! -e \$pidfile ] || [ "\$(readlink /proc/\$(cat \$pidfile)/exe)" != /usr/bin/Xtightvnc ]; then
   password=\$(openssl rand -base64 6)
-  echo \$password | vncpasswd -f > ~/.vnc/passwd
+  echo \$password | /usr/bin/tightvncpasswd -f > ~/.vnc/passwd
   echo "VNC password: \$password"
   /usr/bin/tightvncserver
 fi
