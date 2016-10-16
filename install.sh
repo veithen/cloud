@@ -9,7 +9,7 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
-  openjdk-8-jdk openjdk-8-source subversion libsvnclientadapter-java \
+  openjdk-8-jdk openjdk-8-source subversion libsvnclientadapter-java unzip \
   google-chrome-stable libgnome2-bin
 
 [ -d .vnc ] || mkdir .vnc
