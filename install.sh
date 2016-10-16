@@ -57,9 +57,13 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
   -repository https://dl.bintray.com/subclipse/releases/subclipse/4.2.x/,http://download.eclipse.org/tools/ajdt/46/dev/update,https://alfsch.github.io/eclipse-updates/workspacemechanic \
   -installIU org.tigris.subversion.subclipse.feature.group,org.eclipse.ajdt.feature.group,com.google.eclipse.mechanic.feature.feature.group
 
-[ -d apache-maven-3.3.9 ] || wget -qO- http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
 [ -d bin ] || mkdir bin
+
+[ -d apache-maven-3.3.9 ] || wget -qO- http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
 ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
+
+[ -d apache-ant-1.9.7 ] || wget -qO- http://www-us.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
+ln -sf ../apache-ant-1.9.7/bin/ant bin/ant
 
 [ -e .profile.d/mvn ] || echo 'export MAVEN_OPTS="-Xmx256m -Xms128m"' > .profile.d/mvn
 
