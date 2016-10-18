@@ -6,11 +6,17 @@ cd
 
 #wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+
+sudo sh -c 'echo "deb http://get.docker.com/ubuntu docker main" > /etc/apt/sources.list.d/docker.list'
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
-  openjdk-8-jdk openjdk-8-source subversion libsvnclientadapter-java unzip \
+  openjdk-8-jdk openjdk-8-source subversion libsvnclientadapter-java unzip lxc-docker-0.12.0 \
   google-chrome-stable libgnome2-bin
+
+sudo usermod -a -G docker $USER
 
 [ -d .vnc ] || mkdir .vnc
 
