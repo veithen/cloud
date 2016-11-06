@@ -15,7 +15,13 @@ sudo apt-get install -y --allow-unauthenticated \
   openjdk-8-jdk openjdk-8-source openjdk-9-jdk-headless subversion libsvnclientadapter-java unzip docker.io \
   google-chrome-stable libgnome2-bin
 
-sudo update-java-alternatives -s /usr/lib/jvm/java-1.8.0-openjdk-amd64
+for cmd in java jjs keytool orbd pack200 policytool rmid rmiregistry servertool tnameserv unpack200; do
+  sudo update-alternatives --set $cmd /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/$cmd
+done
+
+for cmd in idlj jar jarsigner javac javadoc javah javap jcmd jdb jdeps jinfo jmap jps jrunscript jsadebugd jstack jstat jstatd rmic schemagen serialver wsgen wsimport xjc; do
+  sudo update-alternatives --set $cmd /usr/lib/jvm/java-8-openjdk-amd64/bin/$cmd
+done
 
 sudo usermod -a -G docker $USER
 
