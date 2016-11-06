@@ -2,6 +2,8 @@
 
 set -e
 
+dir=$(readlink -m $(dirname "$0"))
+
 cd
 
 #wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -17,42 +19,8 @@ sudo usermod -a -G docker $USER
 
 [ -d .vnc ] || mkdir .vnc
 
-cat > .vnc/xstartup <<EOF
-#!/bin/sh
-
-export XKL_XMODMAP_DISABLE=1
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-
-[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-xsetroot -solid grey
-#vncconfig -iconic &
-
-gnome-panel &
-gnome-settings-daemon &
-metacity &
-gnome-terminal &
-EOF
-
-chmod a+x .vnc/xstartup
-
-cat > .vnc/tightvncserver.conf <<EOF
-\$geometry = "2048x1024";
-EOF
-
 grep -q run-parts .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"; done' >> .profile
 [ -d .profile.d ] || mkdir .profile.d
-
-cat > .profile.d/vnc <<EOF
-pidfile=~/.vnc/\$(hostname):1.pid
-if [ ! -e \$pidfile ] || [ "\$(readlink /proc/\$(cat \$pidfile)/exe)" != /usr/bin/Xtightvnc ]; then
-  password=\$(openssl rand -base64 6)
-  echo \$password | /usr/bin/tightvncpasswd -f > ~/.vnc/passwd
-  echo "VNC password: \$password"
-  /usr/bin/tightvncserver
-fi
-EOF
 
 [ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
 
@@ -67,6 +35,9 @@ ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
 
 [ -d apache-ant-1.9.7 ] || wget -qO- http://www-us.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
 ln -sf ../apache-ant-1.9.7/bin/ant bin/ant
+
+cp "$dir/vnc" bin
+chmod a+x "$dir/vnc"
 
 [ -e .profile.d/mvn ] || echo 'export MAVEN_OPTS="-Xmx256m -Xms128m"' > .profile.d/mvn
 

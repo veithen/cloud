@@ -1,0 +1,32 @@
+#!/bin/sh
+. ~/.profile
+
+PASSWORD=$(openssl rand -base64 6)
+echo $PASSWORD | /usr/bin/tightvncpasswd -f > ~/.vnc/passwd
+echo "VNC password: $PASSWORD"
+trap 'kill -TERM $PID' TERM INT
+/usr/bin/Xtightvnc :1 -desktop X -auth ~/.Xauthority -depth 24 -rfbauth ~/.vnc/passwd -rfbport 5901 "$@" &
+PID=$!
+
+sleep 1
+
+export DISPLAY=:1
+
+export XKL_XMODMAP_DISABLE=1
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r ~/.Xresources ] && xrdb ~/.Xresources
+/usr/bin/xsetroot -solid grey
+
+(
+gnome-panel &
+gnome-settings-daemon &
+metacity &
+gnome-terminal &
+) > /dev/null 2> /dev/null
+
+wait $PID
+trap - TERM INT
+wait $PID
+EXIT_STATUS=$?
+
