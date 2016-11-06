@@ -12,8 +12,10 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
-  openjdk-8-jdk openjdk-8-source subversion libsvnclientadapter-java unzip docker.io \
+  openjdk-8-jdk openjdk-8-source openjdk-9-jdk-headless subversion libsvnclientadapter-java unzip docker.io \
   google-chrome-stable libgnome2-bin
+
+sudo update-java-alternatives -s /usr/lib/jvm/java-1.8.0-openjdk-amd64
 
 sudo usermod -a -G docker $USER
 
