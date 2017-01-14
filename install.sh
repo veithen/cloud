@@ -27,7 +27,7 @@ sudo usermod -a -G docker $USER
 
 [ -d .vnc ] || mkdir .vnc
 
-grep -q run-parts .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"; done' >> .profile
+grep -q '\.profile\.d' .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"; done' >> .profile
 [ -d .profile.d ] || mkdir .profile.d
 
 [ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
