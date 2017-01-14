@@ -30,7 +30,7 @@ sudo usermod -a -G docker $USER
 grep -q '\.profile\.d' .profile || echo 'for part in $HOME/.profile.d/*; do . "$part"; done' >> .profile
 [ -d .profile.d ] || mkdir .profile.d
 
-[ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1/eclipse-java-neon-1-linux-gtk-x86_64.tar.gz&r=1" | tar xz
+[ -d eclipse ] || wget -qO- "http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/2/eclipse-java-neon-2-linux-gtk-x86_64.tar.gz&r=1" | tar xz
 
 eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
   -repository https://dl.bintray.com/subclipse/releases/subclipse/4.2.x/,http://download.eclipse.org/tools/ajdt/46/dev/update,https://alfsch.github.io/eclipse-updates/workspacemechanic \
