@@ -54,3 +54,5 @@ chmod a+x "$dir/vnc"
 
 [ -e .profile.d/che ] || echo 'export CHE_UTILITY_VERSION=nightly' > .profile.d/che
 
+[ -e .profile.d/env ] || echo 'export EDITOR=vim' > .profile.d/env
+
