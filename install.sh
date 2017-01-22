@@ -41,10 +41,10 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
 wget -qO bin/che https://raw.githubusercontent.com/eclipse/che/master/che.sh
 chmod a+x bin/che
 
-[ -d apache-maven-3.3.9 ] || wget -qO- http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
+[ -d apache-maven-3.3.9 ] || wget -qO- http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
 ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
 
-[ -d apache-ant-1.9.7 ] || wget -qO- http://www-us.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
+[ -d apache-ant-1.9.7 ] || wget -qO- http://archive.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
 ln -sf ../apache-ant-1.9.7/bin/ant bin/ant
 
 cp "$dir/vnc" bin
