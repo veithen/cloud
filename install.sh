@@ -38,8 +38,8 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
 
 [ -d bin ] || mkdir bin
 
-wget -qO bin/che https://raw.githubusercontent.com/eclipse/che/master/che.sh
-chmod a+x bin/che
+#wget -qO bin/che https://raw.githubusercontent.com/eclipse/che/master/che.sh
+#chmod a+x bin/che
 
 [ -d apache-maven-3.3.9 ] || wget -qO- http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
 ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
