@@ -47,6 +47,14 @@ ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
 [ -d apache-ant-1.9.7 ] || wget -qO- http://archive.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
 ln -sf ../apache-ant-1.9.7/bin/ant bin/ant
 
+if ! [ -d honest-profiler ]; then
+  wget -qO /tmp/honest-profiler.zip http://insightfullogic.com/honest-profiler.zip
+  unzip /tmp/honest-profiler.zip
+  mkdir honest-profiler
+  unzip /tmp/honest-profiler.zip -d honest-profiler
+  rm /tmp/honest-profiler.zip
+fi
+
 cp "$dir/vnc" bin
 chmod a+x "$dir/vnc"
 
