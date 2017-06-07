@@ -9,11 +9,14 @@ cd
 #wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
 
+sudo sh -c 'echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel.list'
+curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
   openjdk-8-jdk openjdk-8-source openjdk-9-jdk-headless subversion libsvnclientadapter-java unzip docker.io haveged \
-  google-chrome-stable libgnome2-bin ruby ruby-dev
+  google-chrome-stable libgnome2-bin ruby ruby-dev bazel
 
 for cmd in java jjs keytool orbd pack200 policytool rmid rmiregistry servertool tnameserv unpack200; do
   sudo update-alternatives --set $cmd /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/$cmd
