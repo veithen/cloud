@@ -12,10 +12,13 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo sh -c 'echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel.list'
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 
+sudo add-apt-repository -y ppa:webupd8team/java
+
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
-  openjdk-8-jdk openjdk-8-source openjdk-9-jdk-headless subversion libsvnclientadapter-java unzip docker.io haveged \
+  openjdk-8-jdk openjdk-8-source oracle-java8-installer openjdk-9-jdk-headless \
+  subversion libsvnclientadapter-java unzip docker.io haveged \
   google-chrome-stable libgnome2-bin ruby ruby-dev bazel diffoscope
 
 for cmd in java jjs keytool orbd pack200 policytool rmid rmiregistry servertool tnameserv unpack200; do
