@@ -16,7 +16,7 @@ sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
   openjdk-8-jdk openjdk-8-source openjdk-9-jdk-headless subversion libsvnclientadapter-java unzip docker.io haveged \
-  google-chrome-stable libgnome2-bin ruby ruby-dev bazel
+  google-chrome-stable libgnome2-bin ruby ruby-dev bazel diffoscope
 
 for cmd in java jjs keytool orbd pack200 policytool rmid rmiregistry servertool tnameserv unpack200; do
   sudo update-alternatives --set $cmd /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/$cmd
