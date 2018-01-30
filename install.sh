@@ -6,6 +6,9 @@ dir=$(readlink -m $(dirname "$0"))
 
 cd
 
+# Enable root auto-login on serial console
+sudo sed -i -e 's#^ExecStart=.*#ExecStart=-/sbin/agetty -a root --keep-baud 115200,38400,9600 %I $TERM#' /lib/systemd/system/serial-getty@.service
+
 #wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
 
