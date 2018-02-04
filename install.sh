@@ -50,8 +50,10 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
 #wget -qO bin/che https://raw.githubusercontent.com/eclipse/che/master/che.sh
 #chmod a+x bin/che
 
-[ -d apache-maven-3.3.9 ] || wget -qO- http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar xz
-ln -sf ../apache-maven-3.3.9/bin/mvn bin/mvn
+MAVEN_VERSION=3.5.2
+
+[ -d apache-maven-$MAVEN_VERSION ] || wget -qO- http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xz
+ln -sf ../apache-maven-$MAVEN_VERSION/bin/mvn bin/mvn
 
 [ -d apache-ant-1.9.7 ] || wget -qO- http://archive.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz | tar xz
 ln -sf ../apache-ant-1.9.7/bin/ant bin/ant
