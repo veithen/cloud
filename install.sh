@@ -76,5 +76,5 @@ chmod a+x "$dir/vnc"
 [ -e .profile.d/env ] || echo 'export EDITOR=vim' > .profile.d/env
 
 # Versions from https://pages.github.com/versions/
-sudo gem install jekyll -v 3.3.1
+sudo gem install jekyll -v 3.6.2
 
