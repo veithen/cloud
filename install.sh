@@ -20,7 +20,7 @@ sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install -y --allow-unauthenticated \
   metacity light-themes gnome-panel gnome-settings-daemon gnome-terminal tightvncserver \
-  openjdk-8-jdk openjdk-8-source oracle-java8-installer openjdk-9-jdk-headless \
+  openjdk-8-jdk openjdk-8-source oracle-java8-installer openjdk-9-jdk-headless openjdk-10-jdk-headless \
   subversion libsvnclientadapter-java unzip docker.io haveged \
   google-chrome-stable libgnome2-bin ruby ruby-dev bazel diffoscope
 
