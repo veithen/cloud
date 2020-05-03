@@ -24,3 +24,6 @@ ln -sf ../tools/apache-maven-$MAVEN_VERSION/bin/mvn bin/mvn
 git config --global user.name "Andreas Veithen"
 git config --global user.email "andreas.veithen@gmail.com"
 git config --global github.user veithen
+
+[ -d tools/google-cloud-sdk ] || curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-290.0.1-darwin-x86_64.tar.gz | tar -C tools -x
+ln -sf ../tools/google-cloud-sdk/bin/gcloud bin/gcloud
