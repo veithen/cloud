@@ -50,7 +50,7 @@ eclipse/eclipse -application org.eclipse.equinox.p2.director -nosplash \
 #wget -qO bin/che https://raw.githubusercontent.com/eclipse/che/master/che.sh
 #chmod a+x bin/che
 
-MAVEN_VERSION=3.5.2
+MAVEN_VERSION=3.6.3
 
 [ -d apache-maven-$MAVEN_VERSION ] || wget -qO- http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xz
 ln -sf ../apache-maven-$MAVEN_VERSION/bin/mvn bin/mvn
